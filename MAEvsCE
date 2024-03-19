@@ -1,0 +1,30 @@
+MAE:
+The simplicity of MAE is one of its primary advantages. It's straightforward both in concept and implementation, providing a direct measure of average error magnitude. 
+MAE's robustness to outliers is particularly advantageous in the financial domain where stock prices can exhibit sudden, atypical changes. Unlike Mean Squared Error, 
+MAE does not exaggerate the impact of these outliers because it does not square the error values. Additionally, MAE's interpretability is a significant plus. The error
+output is in the same units as the predicted stock prices, making it tangible and easily understandable for analysts and stakeholders. Lastly, the linear penalty of MAE 
+is often seen as fair because it treats all errors equally, regardless of their size.
+
+However, MAE does come with certain drawbacks. Its equal weighting of all errors means it lacks sensitivity to larger errors, which may be detrimental in stock price 
+prediction where significant errors can have more serious financial implications. Additionally, MAE is non-differentiable at zero, which can theoretically cause problems 
+during optimization with gradient descent—though, in practice, this issue is commonly mitigated by modern optimization algorithms. Another point of concern is that MAE might 
+not place enough emphasis on capturing trend changes. Since stock prediction relies heavily on understanding and reacting to market trends, the inability of MAE to penalize 
+larger errors—which could indicate critical shifts—may lead to suboptimal forecasting performance. Finally, the potential for multiple minima in the optimization landscape 
+can pose a challenge during the training of complex models like transformers, as it increases the risk of the optimizer converging to a suboptimal local minimum rather than 
+the global best solution.
+
+Cross Entropy:
+Cross-entropy loss offers a probabilistic approach to measuring model performance, making it an excellent fit for classification tasks in stock price prediction, 
+such as determining whether a stock’s price will rise or fall. It shines in its sensitivity to prediction confidence, significantly penalizing models that are confident 
+in their incorrect predictions. This is crucial in the stock market, where overconfidence can be costly. Additionally, cross-entropy is known for providing strong gradient 
+signals which can lead to faster convergence during the training phase. This efficient gradient feedback is especially beneficial when used with softmax activation in 
+multi-class scenarios, providing clear benefits for models predicting different market movements.
+
+However, cross-entropy loss has limitations when applied to regression tasks, such as predicting the exact price of a stock. It isn't naturally suited for such problems where 
+the output is a continuous variable, and using it would necessitate altering the model structure. There's also a risk of the model developing overconfidence in its predictions, 
+which is particularly problematic in financial applications where precision is vital. Moreover, the interpretation of model outputs as probabilities may lead to misguided 
+confidence unless the model is properly calibrated. Finally, cross-entropy doesn’t translate directly to financial impact, as it doesn’t measure error in monetary terms,
+which can be a significant downside in economic and financial contexts where the end goal is often to maximize financial returns or minimize financial risk.
+
+
+
